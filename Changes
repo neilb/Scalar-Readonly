@@ -1,0 +1,6 @@
+Revision history for Perl extension Scalar::ReadOnly.
+
+0.01  Tue Feb  3 15:23:51 2004
+	- original version; created by h2xs 1.23 with options
+		-A -b 5.6.0 -c -n Scalar::ReadOnly
+

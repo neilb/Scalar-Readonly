@@ -1,0 +1,41 @@
+NAME
+    Scalar::Readonly - Perl extension to the SvREADONLY scalar flag
+
+SYNOPSIS
+      use Scalar::Readonly ':all';
+      my $foo = "foo";
+      readonly_on($foo);
+      $foo = "bar";  #ERROR!
+
+      if(readonly($foo)) {
+        readonly_off($foo);
+      }
+
+      readonly_off($]);
+      $] = "6.0";
+
+      print "This is Perl v$]";
+
+DESCRIPTION
+    This simple modules can make scalars read-only. Usefull to protect
+    configuration variables, for example.
+
+    This module can also be used to subvert Perl's many read-only variables
+    to potential evil trickery.
+
+  EXPORT
+    ':all' => readonly, readonly_on, readonly_off
+
+SEE ALSO
+    Scalar::Util
+
+AUTHOR
+    Philippe M. Chiasson, <gozer@cpan.org>
+
+COPYRIGHT AND LICENSE
+    Copyright (C) 2004 by Philippe M. Chiasson
+
+    This library is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself, either Perl version 5.8.3 or, at
+    your option, any later version of Perl 5 you may have available.
+

@@ -1,0 +1,10 @@
+Changes
+Makefile.PL
+MANIFEST
+ppport.h
+README
+Readonly.xs
+t/simple.t
+lib/Scalar/Readonly.pm
+META.yml                                 Module meta-data (added by MakeMaker)
+SIGNATURE
