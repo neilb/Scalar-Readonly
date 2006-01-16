@@ -7,4 +7,4 @@ Readonly.xs
 t/simple.t
 lib/Scalar/Readonly.pm
 META.yml                                 Module meta-data (added by MakeMaker)
-SIGNATURE
+SIGNATURE                                Public-key signature (added by MakeMaker)
