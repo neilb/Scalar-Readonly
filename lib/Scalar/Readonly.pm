@@ -25,7 +25,7 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 require XSLoader;
 XSLoader::load('Scalar::Readonly', $VERSION);
@@ -38,7 +38,7 @@ __END__
 
 =head1 NAME
 
-Scalar::Readonly - Perl extension to the SvREADONLY scalar flag
+Scalar::Readonly - functions for controlling whether any scalar variable is read-only
 
 =head1 SYNOPSIS
 
@@ -46,21 +46,38 @@ Scalar::Readonly - Perl extension to the SvREADONLY scalar flag
   my $foo = "foo";
   readonly_on($foo);
   $foo = "bar";  #ERROR!
-
-  if(readonly($foo)) {
+  
+  if (readonly($foo)) {
     readonly_off($foo);
   }
-
+  
   readonly_off($]);
   $] = "6.0";
-
+  
   print "This is Perl v$]";
 
 =head1 DESCRIPTION
 
-This simple modules can make scalars read-only. Usefull to protect configuration variables, for example.
+This simple module can make scalars read-only. Useful to protect configuration variables, for example.
 
 This module can also be used to subvert Perl's many read-only variables to potential evil trickery.
+
+=head2 readonly
+
+Ths function takes a scalar variable and tells you whether it is read-only. It returns 0 if the scalar isn't
+read-only, and a positive number if it is.
+
+=head2 readonly_on
+
+Makes the passed scalar variable read-only. If you try and modify a read-only scalar, your code will die with
+the following error message:
+
+  Modification of a read-only value attempted at
+
+=head2 readonly_off
+
+Makes the passed scalar variable read-write. You can even do this to read-only special variables,
+though you almost certainly don't want to do that.
 
 =head2 EXPORT
 
@@ -68,7 +85,7 @@ This module can also be used to subvert Perl's many read-only variables to poten
 
 =head1 SEE ALSO
 
-L<Scalar::Util>
+L<Scalar::Util>, L<Attribute::Constant>, L<Const::Fast>.
 
 =head1 AUTHOR
 
@@ -81,6 +98,5 @@ Copyright (C) 2004 by Philippe M. Chiasson
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.3 or,
 at your option, any later version of Perl 5 you may have available.
-
 
 =cut
