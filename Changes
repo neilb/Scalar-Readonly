@@ -2,6 +2,8 @@ Revision history for Perl extension Scalar::ReadOnly.
 
 0.03 unreleased
 
+    - changed the readonly() function so it returns either 0 or 1 (previously returned 134217728 for true,
+      which was some value from the perl internals).
     - added brief sections describing the three functions provided by the module
     - fixed some typos in the documentation
 

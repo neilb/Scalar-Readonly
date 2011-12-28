@@ -3,10 +3,8 @@
 
 #########################
 
-# change 'tests => 1' to 'tests => last_test_to_print';
 
-use Test;
-BEGIN { plan tests => 4 };
+use Test::More;
 use Scalar::Readonly ':all';
 ok(1); # If we made it this far, we're ok.
 
@@ -15,7 +13,12 @@ ok(1); # If we made it this far, we're ok.
 # Insert your test code below, the Test::More module is use()ed here so read
 # its man page ( perldoc Test::More ) for help writing this test script.
 
-my $foo = "foo";
+my $foo;
+
+eval { $foo = "foo"; };
+ok(!$@, "assigning to read/write scalar");
+
+ok(!readonly($foo), "readonly() should return false");
 
 readonly_on($foo);
 
@@ -23,11 +26,14 @@ eval {
 	$foo = "bar";
 };
 
-ok($@);
+ok($@, "shouldn't be able to change variable");
 
-ok(readonly($foo));
+ok(readonly($foo), "readonly() should return true");
 
-readonly_off($]);
-eval { $] = "6" };
+readonly_off($foo);
 
-ok(!$@ && $] == "6");
+ok(!readonly($foo), "readonly() should return false again");
+eval { $foo = 'xyzzy'; };
+ok(!$@, "assigning to scalar should succeed again");
+
+done_testing();

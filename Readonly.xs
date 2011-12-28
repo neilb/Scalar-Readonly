@@ -11,7 +11,7 @@ int
 readonly(sv)
     SV *sv
     CODE:
-        RETVAL = SvREADONLY(sv);
+        RETVAL = !!SvREADONLY(sv);
     OUTPUT:
         RETVAL
 
